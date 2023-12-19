@@ -111,8 +111,8 @@ jobs:
         fi
         
         if [ ${{ env.ARM_GCC_VERSION }} = 8.32 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu.tar.xz?revision=2e88a73f-d233-4f96-b1f4-d8b36e9bb0b9&rev=2e88a73fd2334f96b1f4d8b36e9bb0b9&hash=0C1205BC354077066DB91E85A62482DFE806798F
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf.tar.xz?revision=e09a1c45-0ed3-4a8e-b06b-db3978fd8d56&rev=e09a1c450ed34a8eb06bdb3978fd8d56&hash=EFF6A5D00F2F48194BA9FF99EF044990BE996BE0
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf.tar.xz
              tar -C gcc64/ -xf gcc64.tar.xz
              tar -C gcc32/ -xf gcc32.tar.xz
         fi
