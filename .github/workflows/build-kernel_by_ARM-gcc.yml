@@ -75,11 +75,74 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         mkdir -p ./gcc32 ./gcc64
-        wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu.tar.xz
-        wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf.tar.xz
-        tar -C gcc64/ -xf gcc64.tar.xz
-        tar -C gcc32/ -xf gcc32.tar.xz
-             
+        if [ ${{ env.ARM_GCC_VERSION }} = 12.3 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+        
+        if [ ${{ env.ARM_GCC_VERSION }} = 11.3 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi     
+
+        if [ ${{ env.ARM_GCC_VERSION }} = 10.3 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-arm-none-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+
+        if [ ${{ env.ARM_GCC_VERSION }} = 10.2 ]; then                     
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-arm-none-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+
+        if [ ${{ env.ARM_GCC_VERSION }} = 9.2 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/gcc-arm-9.2-2019.12-x86_64-aarch64-none-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/gcc-arm-9.2-2019.12-x86_64-arm-none-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+        
+        if [ ${{ env.ARM_GCC_VERSION }} = 8.32 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-aarch64-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-arm-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+
+        if [ ${{ env.ARM_GCC_VERSION }} = 8.31 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.02/gcc-arm-8.3-2019.02-x86_64-aarch64-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.02/gcc-arm-8.3-2019.02-x86_64-arm-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+
+        if [ ${{ env.ARM_GCC_VERSION }} = 8.22 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2019.01/gcc-arm-8.2-2019.01-x86_64-aarch64-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2019.01/gcc-arm-8.2-2019.01-x86_64-arm-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+
+        if [ ${{ env.ARM_GCC_VERSION }} = 8.21 ]; then
+             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2018.08/gcc-arm-8.2-2018.08-x86_64-aarch64-elf.tar.xz
+             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2018.08/gcc-arm-8.2-2018.08-x86_64-arm-eabi.tar.xz
+             tar -C gcc64/ -xf gcc64.tar.xz
+             tar -C gcc32/ -xf gcc32.tar.xz
+        fi
+        cd ./gcc64
+        mv *-aarch64-* gcc641
+        cd ..
+        cd ./gcc32
+        mv *-arm-* gcc321
+
     - name: Download mkbootimg tools
       if: env.BUILD_BOOT_IMG == 'true'
       run: |
@@ -169,11 +232,7 @@ jobs:
     - name: Build kernel
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        export ARCH=arm64
-        export SUBARCH=arm64
-        export HEADER_ARCH=arm64
-        export CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu/bin/aarch64-linux-gnu-
-        export CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
+        export PATH=$GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc321/bin$PATH
         export KBUILD_BUILD_HOST=Github-Action
         export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
         if [ ! -z ${{ env.KSU_EXPECTED_SIZE }} ] && [ ! -z ${{ env.KSU_EXPECTED_HASH }} ]; then
@@ -182,11 +241,11 @@ jobs:
         fi
 
         if [ -f $GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin/aarch64-none-elf-gcc ]; then
-            make O=out ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) O=out 
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-none-elf- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.KERNEL_CONFIG }}
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-none-elf- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.EXTRA_CMDS }}
         else
-            make O=out ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) O=out 
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-elf- CROSS_COMPILE_ARM32=arm-eabi- ${{ env.KERNEL_CONFIG }}
+            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-elf- CROSS_COMPILE_ARM32=arm-eabi- ${{ env.EXTRA_CMDS }}
         fi
 
     - name: Check a kernel output files
