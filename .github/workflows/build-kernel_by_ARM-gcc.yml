@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build Kernel by ${{ github.actor }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
     env:
       CCACHE_COMPILERCHECK: "%compiler% -dumpmachine; %compiler% -dumpversion"
@@ -75,67 +75,10 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         mkdir -p ./gcc32 ./gcc64
-        if [ ${{ env.ARM_GCC_VERSION }} = 12.3 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-x86_64-arm-none-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi
-        
-        if [ ${{ env.ARM_GCC_VERSION }} = 11.3 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi     
-
-        if [ ${{ env.ARM_GCC_VERSION }} = 10.3 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-arm-none-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi
-
-        if [ ${{ env.ARM_GCC_VERSION }} = 10.2 ]; then                     
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-arm-none-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi
-
-        if [ ${{ env.ARM_GCC_VERSION }} = 9.2 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/gcc-arm-9.2-2019.12-x86_64-aarch64-none-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/9.2-2019.12/binrel/gcc-arm-9.2-2019.12-x86_64-arm-none-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi
-        
-        if [ ${{ env.ARM_GCC_VERSION }} = 8.32 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi
-
-        if [ ${{ env.ARM_GCC_VERSION }} = 8.31 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.02/gcc-arm-8.3-2019.02-x86_64-aarch64-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.02/gcc-arm-8.3-2019.02-x86_64-arm-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi
-
-        if [ ${{ env.ARM_GCC_VERSION }} = 8.22 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2019.01/gcc-arm-8.2-2019.01-x86_64-aarch64-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2019.01/gcc-arm-8.2-2019.01-x86_64-arm-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
-        fi
-
-        if [ ${{ env.ARM_GCC_VERSION }} = 8.21 ]; then
-             wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2018.08/gcc-arm-8.2-2018.08-x86_64-aarch64-elf.tar.xz
-             wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.2-2018.08/gcc-arm-8.2-2018.08-x86_64-arm-eabi.tar.xz
-             tar -C gcc64/ -xf gcc64.tar.xz
-             tar -C gcc32/ -xf gcc32.tar.xz
+        wget -O gcc64.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-aarch64-linux-gnu.tar.xz
+        wget -O gcc32.tar.xz https://developer.arm.com/-/media/Files/downloads/gnu-a/8.3-2019.03/binrel/gcc-arm-8.3-2019.03-x86_64-arm-linux-gnueabihf.tar.xz
+        tar -C gcc64/ -xf gcc64.tar.xz
+        tar -C gcc32/ -xf gcc32.tar.xz
              
     - name: Download mkbootimg tools
       if: env.BUILD_BOOT_IMG == 'true'
