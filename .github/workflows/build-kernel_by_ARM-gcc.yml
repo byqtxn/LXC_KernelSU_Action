@@ -137,11 +137,6 @@ jobs:
              tar -C gcc64/ -xf gcc64.tar.xz
              tar -C gcc32/ -xf gcc32.tar.xz
         fi
-        cd ./gcc64
-        mv *-aarch64-* gcc641
-        cd ..
-        cd ./gcc32
-        mv *-arm-* gcc321
 
     - name: Download mkbootimg tools
       if: env.BUILD_BOOT_IMG == 'true'
