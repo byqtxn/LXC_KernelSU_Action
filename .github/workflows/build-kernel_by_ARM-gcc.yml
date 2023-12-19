@@ -182,11 +182,11 @@ jobs:
         fi
 
         if [ -f $GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin/aarch64-none-elf-gcc ]; then
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc64/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/kernel_workspace/gcc32/bin/arm-linux-gnueabihf- ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc64/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabihf- ${{ env.EXTRA_CMDS }}
+            make O=out ${{ env.KERNEL_CONFIG }}
+            make -j$(nproc --all) O=out 
         else
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc64/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/kernel_workspace/gcc32/bin/arm-linux-gnueabihf- ${{ env.KERNEL_CONFIG }}
-            make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc64/bin/aarch64-linux-gnu- CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/kernel_workspace/gcc32/bin/arm-linux-gnueabihf- ${{ env.EXTRA_CMDS }}
+            make O=out ${{ env.KERNEL_CONFIG }}
+            make -j$(nproc --all) O=out 
         fi
 
     - name: Check a kernel output files
