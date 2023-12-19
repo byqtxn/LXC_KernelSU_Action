@@ -232,7 +232,7 @@ jobs:
     - name: Build kernel
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        export PATH=$GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc321/bin$PATH
+        export PATH=$GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc-arm-8.3-2019.03-x86_64-aarch64-elf/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/gcc-arm-8.3-2019.03-x86_64-arm-eabi/bin$PATH
         export KBUILD_BUILD_HOST=Github-Action
         export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
         if [ ! -z ${{ env.KSU_EXPECTED_SIZE }} ] && [ ! -z ${{ env.KSU_EXPECTED_HASH }} ]; then
@@ -240,7 +240,7 @@ jobs:
           export KSU_EXPECTED_HASH=${{ env.KSU_EXPECTED_HASH }}
         fi
 
-        if [ -f $GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc641/bin/aarch64-none-elf-gcc ]; then
+        if [ -f $GITHUB_WORKSPACE/kernel_workspace/gcc64/gcc-arm-8.3-2019.03-x86_64-aarch64-elf/bin/aarch64-none-elf-gcc ]; then
             make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-none-elf- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.KERNEL_CONFIG }}
             make -j$(nproc --all) O=out ARCH=${{ env.ARCH }} CROSS_COMPILE=aarch64-none-elf- CROSS_COMPILE_ARM32=arm-none-eabi- ${{ env.EXTRA_CMDS }}
         else
